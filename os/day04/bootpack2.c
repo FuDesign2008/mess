@@ -10,64 +10,64 @@ void init_palette(void);
 void set_palette(int start, int end, unsigned char *rgb);
 
 
-void HariMain(void) 
+void HariMain(void)
 {
-	int i;
-	char *p;
+    int i;
+    char *p;
 
-	init_palette();
+    init_palette();
 
-	p = (char *) 0xa0000;
+    p = (char *) 0xa0000;
 
-	for (i = 0; i <= 0xaffff; i++) {
-		p[i] = i & 0x0f;
-	}
+    for (i = 0; i <= 0xaffff; i++) {
+        p[i] = i & 0x0f;
+    }
 
-	for (; ;) {
-		io_hlt();
-	}
+    for (; ;) {
+        io_hlt();
+    }
 
 }
 
 
 void init_palette(void)
 {
-	static unsigned char table_rgb[16 * 3] = {
-		0x00, 0x00, 0x00, /* 0: black */
-		0xff, 0x00, 0x00, /* 1: red */
-		0x00, 0xff, 0x00, /* 2: green */
-		0xff, 0xff, 0x00, /* 3: yellow */
-		0x00, 0x00, 0xff, /* 4: blue */
-		0xff, 0x00, 0xff, /* 5: */
-		0x00, 0xff, 0xff, /* 6: blue */
-		0xff, 0xff, 0xff, /* 7: white */
-		// TODO
+    static unsigned char table_rgb[16 * 3] = {
+        0x00, 0x00, 0x00, /* 0: black */
+        0xff, 0x00, 0x00, /* 1: red */
+        0x00, 0xff, 0x00, /* 2: green */
+        0xff, 0xff, 0x00, /* 3: yellow */
+        0x00, 0x00, 0xff, /* 4: blue */
+        0xff, 0x00, 0xff, /* 5: */
+        0x00, 0xff, 0xff, /* 6: blue */
+        0xff, 0xff, 0xff, /* 7: white */
+        // TODO
 
-		0x84, 0x84, 0x84 /* 15: gray */
-	};
+        0x84, 0x84, 0x84 /* 15: gray */
+    };
 
-	set_palette(0, 15, table_rgb);
+    set_palette(0, 15, table_rgb);
 
-	return;
+    return;
 }
 
 
 void set_palette(int start, int end, unsigned char *rgb)
 {
-	int i, eflags;
-	eflags = io_load_eflags();
-	io_cli();
-	io_out8(0x03c8, start);
+    int i, eflags;
+    eflags = io_load_eflags();
+    io_cli();
+    io_out8(0x03c8, start);
 
-	for (i = start; i <= end; i++) {
-		io_out8(0x03c9, rgb[0] / 4)
-		io_out8(0x03c9, rgb[1] / 4)
-		io_out8(0x03c9, rgb[2] / 4)
-		rgb += 3;
-	}
+    for (i = start; i <= end; i++) {
+        io_out8(0x03c9, rgb[0] / 4)
+        io_out8(0x03c9, rgb[1] / 4)
+        io_out8(0x03c9, rgb[2] / 4)
+        rgb += 3;
+    }
 
-	io_store_eflags(eflags);
+    io_store_eflags(eflags);
 
-	return;
+    return;
 }
 
