@@ -13,7 +13,7 @@ print 'hello %s'
 
 userInfo = {
     "name": "fuyg",
-    "corp": "youdao",
+    "corp": "bigpipe.ltd",
     "skill": "javascript"
 }
 
