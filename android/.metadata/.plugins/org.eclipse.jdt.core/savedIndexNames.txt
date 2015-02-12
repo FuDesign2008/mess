@@ -1,0 +1,6 @@
+INDEX VERSION 1.126+/Users/fuyg/workspace/android/.metadata/.plugins/org.eclipse.jdt.core
+512732384.index
+519758490.index
+2353006204.index
+1299832116.index
+623804975.index
