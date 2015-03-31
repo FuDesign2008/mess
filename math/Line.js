@@ -84,7 +84,7 @@ define(function (require) {
                 startPart = new Line(start, point),
                 endPart = new Line(point, end),
                 sum = startPart.getLength() + endPart.getLength(),
-                result = Math.abs(sum - len) < 0.00000000000000001;
+                result = Math.abs(sum - len) < 0.000000000000001;
 
             return result;
         },
