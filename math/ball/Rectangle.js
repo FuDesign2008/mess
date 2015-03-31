@@ -5,8 +5,8 @@
  * @date  2015-03-31
  */
 define(function (require) {
-    var Base = require('./jtk/Base'),
-        //console = require('./jtk/console'),
+    var Base = require('../jtk/Base'),
+        //console = require('../jtk/console'),
         Point = require('./Point'),
         Line = require('./Line'),
         Rectangle = Base.extend({
@@ -15,13 +15,13 @@ define(function (require) {
                 var that = this;
 
                 // endPoint greater that startPoint
-                if (startPoint.compare(endPoint) === Point.LESS) {
+                //if (startPoint.compare(endPoint) === Point.LESS) {
                     that.startPoint = startPoint;
                     that.endPoint = endPoint;
-                } else {
-                    that.startPoint = endPoint;
-                    that.endPoint = startPoint;
-                }
+                //} else {
+                    //that.startPoint = endPoint;
+                    //that.endPoint = startPoint;
+                //}
             },
 
             /**

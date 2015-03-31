@@ -14,16 +14,19 @@
             <input type="button" value="pause" id="pause"/>
             <input type="button" value="continue" id="continue"/>
         </div>
-        <script src="./bower_components/requirejs/require.js" type="text/javascript"></script>
+        <script src="../bower_components/requirejs/require.js" type="text/javascript"></script>
         <script type="text/javascript">
             require.config({
                 paths: {
-                    jquery: './bower_components/jquery/dist/jquery',
-                    underscore: './bower_components/underscore/underscore',
-                    backbone: './bower_components/backbone/backbone'
+                    jquery: '../bower_components/jquery/dist/jquery',
+                    underscore: '../bower_components/underscore/underscore',
+                    backbone: '../bower_components/backbone/backbone',
+                    decimal: '../bower_components/decimal.js/decimal',
+                    math: '../bower_components/mathjs/dist/math'
                 },
                 shim: {
                     backbone: ['jquery', 'underscore'],
+                    math: ['decimal']
                 }
             });
         </script>

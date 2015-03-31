@@ -5,8 +5,9 @@
  * @date  2015-03-31
  */
 define(function (require) {
-    var Base = require('./jtk/Base'),
+    var Base = require('../jtk/Base'),
         Line = require('./Line'),
+        //Decimal = require('./decimal'),
         Ball = Base.extend({
 
             constructor: function (velocity, point) {
@@ -37,11 +38,12 @@ define(function (require) {
                     return;
                 }
 
-                velocity.angle = 2 * result.line.angleX() - velocity.angle;
+                velocity.angle = result.line.angleX().times(2
+                        ).minus(velocity.angle);
 
                 startHalfLine = new Line(that.centerPoint, result.point);
                 endHalfLineLength =
-                    forecastLine.getLength() - startHalfLine.getLength();
+                    forecastLine.getLength().minus(startHalfLine.getLength());
                 that.centerPoint =
                     velocity.computeEndPoint(result.point, endHalfLineLength);
 

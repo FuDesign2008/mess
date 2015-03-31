@@ -6,8 +6,9 @@ define(function (require) {
         Point = require('./Point'),
         //Line = require('Line'),
         Velocity = require('./Velocity'),
+        Decimal = require('./decimal'),
         rect = new Rectangle(new Point(10, 10), new Point(200, 200)),
-        ballVelocity = new Velocity(5, Math.PI/6),
+        ballVelocity = new Velocity(3, (new Decimal(Math.PI + '')).div(6)),
         ball = new Ball(ballVelocity, new Point(30, 30)),
         canvas = document.querySelector('canvas'),
         context = canvas.getContext('2d'),
@@ -28,14 +29,14 @@ define(function (require) {
 
         if (ballOldPosition) {
             context.clearRect(
-                ballOldPosition.x - radius - 2,
-                ballOldPosition.y - radius - 2,
+                ballOldPosition.x.minus(radius).minus(2).toNumber(),
+                ballOldPosition.y.minus(radius).minus(2).toNumber,
                 (radius + 2) * 2,
                 (radius + 2) * 2
             );
         }
 
-        ballOldPosition = point;
+        ballOldPosition = point.clone();
 
         context.beginPath();
         context.arc(point.x, point.y, radius, 0, Math.PI * 2, true);
