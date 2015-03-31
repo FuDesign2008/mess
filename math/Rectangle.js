@@ -6,6 +6,7 @@
  */
 define(function (require) {
     var Base = require('./jtk/Base'),
+        //console = require('./jtk/console'),
         Point = require('./Point'),
         Line = require('./Line'),
         Rectangle = Base.extend({
@@ -45,6 +46,20 @@ define(function (require) {
                 }
 
                 return that._sides;
+            },
+
+            width: function () {
+                var that = this,
+                    sides = that.getSides(),
+                    line = sides[0];
+                return line.getLength();
+            },
+
+            height: function () {
+                var that = this,
+                    sides = that.getSides(),
+                    line = sides[1];
+                return line.getLength();
             },
 
             /**

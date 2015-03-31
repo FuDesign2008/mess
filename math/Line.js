@@ -7,6 +7,7 @@
 define(function (require) {
 
     var Class = require('./jtk/Class'),
+        console = require('./jtk/console'),
         Point = require('./Point'),
         Vector = require('./Vector'),
         Line;
@@ -59,6 +60,7 @@ define(function (require) {
                 endCompare;
 
             if (that.isParallel(line)) {
+                console.log('line is parallel!');
                 return false;
             }
 
@@ -67,11 +69,24 @@ define(function (require) {
             startCompare = crossPoint.compare(that.startPoint);
             endCompare = crossPoint.compare(that.endPoint);
 
-            if (startCompare !== Point.LESS && endCompare !== Point.GREATE) {
+            if (that.isInClosedLine(crossPoint)) {
                 return crossPoint;
             }
 
             return false;
+        },
+
+        isInClosedLine: function (point) {
+            var that = this,
+                start = that.startPoint,
+                end = that.endPoint,
+                len = that.getLength(),
+                startPart = new Line(start, point),
+                endPart = new Line(point, end),
+                sum = startPart.getLength() + endPart.getLength(),
+                result = Math.abs(sum - len) < 0.00000000000000001;
+
+            return result;
         },
 
         /**

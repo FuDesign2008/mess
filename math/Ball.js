@@ -37,7 +37,7 @@ define(function (require) {
                     return;
                 }
 
-                velocity.angle = velocity.angle + 2 * result.line.angleX();
+                velocity.angle = 2 * result.line.angleX() - velocity.angle;
 
                 startHalfLine = new Line(that.centerPoint, result.point);
                 endHalfLineLength =
@@ -46,6 +46,7 @@ define(function (require) {
                     velocity.computeEndPoint(result.point, endHalfLineLength);
 
                 that.trigger('draw');
+                that.trigger('draw-rect');
             },
 
             /**
