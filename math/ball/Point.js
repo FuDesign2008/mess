@@ -6,7 +6,7 @@
  */
 define(function (require) {
 
-    var Class = require('./jtk/Class'),
+    var Class = require('../jtk/Class'),
         Point = Class.extend({
 
             constructor: function (x, y) {

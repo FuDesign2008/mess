@@ -5,7 +5,7 @@
  * @date  2015-03-31
  */
 define(function (require) {
-    var Base = require('./jtk/Base'),
+    var Base = require('../jtk/Base'),
         Line = require('./Line'),
         Ball = Base.extend({
 

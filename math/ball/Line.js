@@ -6,8 +6,8 @@
  */
 define(function (require) {
 
-    var Class = require('./jtk/Class'),
-        console = require('./jtk/console'),
+    var Class = require('../jtk/Class'),
+        console = require('../jtk/console'),
         Point = require('./Point'),
         Vector = require('./Vector'),
         Line;

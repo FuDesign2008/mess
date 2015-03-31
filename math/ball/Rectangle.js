@@ -5,8 +5,8 @@
  * @date  2015-03-31
  */
 define(function (require) {
-    var Base = require('./jtk/Base'),
-        //console = require('./jtk/console'),
+    var Base = require('../jtk/Base'),
+        //console = require('../jtk/console'),
         Point = require('./Point'),
         Line = require('./Line'),
         Rectangle = Base.extend({

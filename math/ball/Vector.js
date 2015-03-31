@@ -5,7 +5,7 @@
  * @date  2015-03-31
  */
 define(function (require) {
-    var Class = require('./jtk/Class'),
+    var Class = require('../jtk/Class'),
         Vector = Class.extend({
 
             constructor: function (startPoint, endPoint) {
