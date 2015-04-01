@@ -30,8 +30,9 @@ define(function (require) {
                     return Point.EQUAL;
                 }
 
-                if (that.x >= point.x && that.y >= point.y) {
-                    return Point.GREATE;
+                if (Math.pow(that.x, 2) + Math.pow(that.y, 2) >
+                        Math.pow(point.x, 2) + Math.pow(point.y, 2) ) {
+                    return Point.GREATER;
                 }
 
                 return Point.LESS;
@@ -40,10 +41,16 @@ define(function (require) {
             isEqual: function (point) {
                 var that = this;
                 return that.compare(point) === Point.EQUAL;
+            },
+
+            clone: function () {
+                var that = this;
+
+                return new Point(that.x, that.y);
             }
 
         }, {
-            GREATE: 1,
+            GREATER: 1,
             EQUAL: 2,
             LESS: 3
         });

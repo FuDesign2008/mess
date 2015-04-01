@@ -28,6 +28,8 @@ define(function (require) {
                     endPoint = startPoint.createWithDistance(distanceX,
                         distanceY);
 
+                //that.speed = that.speed * 0.996;
+
                 return new Line(startPoint, endPoint);
             },
 

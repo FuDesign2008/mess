@@ -1,5 +1,5 @@
 /**
- *
+ * 有方向的直线
  *
  * @author fuyg
  * @date  2015-03-31
@@ -16,14 +16,9 @@ define(function (require) {
 
         constructor: function (startPoint, endPoint) {
             var that = this;
-            // endPoint is greater than startPoint
-            if (startPoint.compare(endPoint) === Point.LESS) {
-                that.startPoint = startPoint;
-                that.endPoint = endPoint;
-            } else {
-                that.endPoint = startPoint;
-                that.startPoint = endPoint;
-            }
+
+            that.startPoint = startPoint;
+            that.endPoint = endPoint;
         },
 
         getLength: function () {
@@ -55,9 +50,7 @@ define(function (require) {
          */
         hitTest: function (line) {
             var that = this,
-                crossPoint,
-                startCompare,
-                endCompare;
+                crossPoint;
 
             if (that.isParallel(line)) {
                 console.log('line is parallel!');
@@ -66,10 +59,8 @@ define(function (require) {
 
             crossPoint = that._crossPoint(line);
 
-            startCompare = crossPoint.compare(that.startPoint);
-            endCompare = crossPoint.compare(that.endPoint);
-
-            if (that.isInClosedLine(crossPoint)) {
+            if (that.isInClosedLine(crossPoint) &&
+                    line.isInClosedLine(crossPoint)) {
                 return crossPoint;
             }
 
@@ -78,15 +69,13 @@ define(function (require) {
 
         isInClosedLine: function (point) {
             var that = this,
-                start = that.startPoint,
-                end = that.endPoint,
                 len = that.getLength(),
-                startPart = new Line(start, point),
-                endPart = new Line(point, end),
+                startPart = new Line(that.startPoint, point),
+                endPart = new Line(point, that.endPoint),
                 sum = startPart.getLength() + endPart.getLength(),
-                result = Math.abs(sum - len) < 0.000000000000001;
+                result = Math.abs(sum - len);
 
-            return result;
+            return result < 0.0001;
         },
 
         /**
