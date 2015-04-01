@@ -1,9 +1,9 @@
 /**
  * A simple console object for debug, only has these properties:
  *  + DEBUG
- *  + log()
- *  + warn()
- *  + error()
+ *  + log(arg1, arg2, ...)
+ *  + warn(arg1, arg2, ...)
+ *  + error(arg1, arg2, ...)
  *
  *  Use `window.DEBUG` or `global.DEBUG` to open/close debug mode.
  *  It's safe to let statements like `console.log("something");` online for
@@ -44,42 +44,41 @@ define(function () {
     }
 
     retObj.DEBUG = true;
+
+    // `...log.bind..` can print message with line number
+    if (nativeConsole.log && nativeConsole.log.bind) {
+        retObj.log = nativeConsole.log.bind(nativeConsole);
+        retObj.warn = nativeConsole.warn.bind(nativeConsole);
+        retObj.error = nativeConsole.error.bind(nativeConsole);
+        return retObj;
+    }
+
+
     /**
      */
     retObj.log = function () {
-        var msg = [],
-            index,
+        var index,
             len = arguments.length;
-        // fn.apply will cause error in IE
         for (index = 0; index < len; index++) {
-            msg.push(String(arguments[index]));
-        }
-        nativeConsole.log(msg.join(';'));
-    };
-    /**
-     * @param {String|Object}  msg
-     * @param {String}  [fileName]
-     */
-    retObj.warn = function (msg, fileName) {
-        var that = this;
-        fileName = fileName ? ('[' + fileName + ']') : '';
-        that.log(fileName + 'WARN: ' + msg + '.');
-        //export warning
-        if (typeof msg === 'object') {
-            throw msg;
+            nativeConsole.log(arguments[index]);
         }
     };
     /**
-     * @param {String|Object}  msg
-     * @param {String}  [fileName]
      */
-    retObj.error = function (msg, fileName) {
-        var that = this;
-        fileName = fileName ? ('[' + fileName + ']') : '';
-        that.log(fileName + 'ERROR: ' + msg + '!');
-        //export error
-        if (typeof msg === 'object') {
-            throw msg;
+    retObj.warn = function () {
+        var index,
+            len = arguments.length;
+        for (index = 0; index < len; index++) {
+            nativeConsole.warn(arguments[index]);
+        }
+    };
+    /**
+     */
+    retObj.error = function () {
+        var index,
+            len = arguments.length;
+        for (index = 0; index < len; index++) {
+            nativeConsole.error(arguments[index]);
         }
     };
 

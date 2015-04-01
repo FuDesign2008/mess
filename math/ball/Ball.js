@@ -7,6 +7,7 @@
 define(function (require) {
     var Base = require('../jtk/Base'),
         Line = require('./Line'),
+        console = require('../jtk/console'),
         Ball = Base.extend({
 
             constructor: function (velocity, point, context2D) {
@@ -50,6 +51,7 @@ define(function (require) {
                 crossPoint = result.point;
 
                 that.trigger('draw', crossPoint);
+                console.log('ball hit rectangle');
 
                 startLine = new Line(line.startPoint, crossPoint);
                 nextLineLength = line.getLength() - startLine.getLength();
