@@ -1,14 +1,76 @@
 /**
  *
+ * Context2D.js
  *
- * @author fuyg
+ * http://github.com/FuDesign2008/Context2D
+ *
+ * @author FuDesign2008@163.com
  * @date  2015-04-12
  */
-define(function (require) {
-    var _ = require('underscore'),
-        $ = require('jquery'),
-        Class = require('./jtk/Class'),
-        Context2D,
+
+(function(root, factory) {
+    if (typeof exports === 'object' && typeof require === 'function') {
+        /*global module*/
+        module.exports = factory();
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(function() {
+            return factory();
+        });
+    } else {
+        root.Context2D = factory();
+    }
+})(this, function () {
+    var TO_STRING = Object.prototype.toString,
+        isString = function (obj) {
+            return obj == null ? false :
+                TO_STRING.call(obj) === '[object String]';
+        },
+        isObject = function (obj) {
+            return obj == null ? false :
+                TO_STRING.call(obj) === '[object Object]';
+        },
+        /**
+         * 类似each, fn的执行值为false时，不再继续进行
+         * @param {Object} obj
+         * @param {Function} fn
+         *
+         */
+        objEach = function (obj, fn) {
+            var ret, prop;
+            if (!isObject(obj) || !obj.hasOwnProperty) {
+                return;
+            }
+            for (prop in obj) {
+                if (obj.hasOwnProperty(prop)) {
+                    ret = fn(obj[prop], prop);
+                    if (ret === false) {
+                        return;
+                    }
+                }
+            }
+        },
+        /**
+         * @param {Array}
+         *            a 数值
+         * @param {Function}
+         *            fn 回调函数
+         */
+        arrEach =  function (a, fn) {
+            if (!a.length) {
+                return;
+            }
+            var ret,
+                i,
+                l = a.length;
+
+            for (i = 0; i < l; i++) {
+                ret = fn(a[i], i);
+                if (ret === false) {
+                    return;
+                }
+            }
+        },
         READONLY = 1,
         BOTH = 2,
         properties = {
@@ -80,91 +142,74 @@ define(function (require) {
             'strokeText',
             'transform',
             'translate'
-        ],
-        proto = {
+        ];
 
-            /**
-             * @param {HTMLCanvasElement|Context} context
-             */
-            constructor: function (context) {
-                var that = this;
+    /**
+     * @param {Context} context
+     */
+    function Context2D (context) {
+        var that = this;
+        that.context = context;
+        return that;
+    }
 
-                if (context.getContext) {
-                    that.context = context.getContext('2d');
-                } else if (context.canvas) {
-                    that.context = context;
-                } else {
-                    throw 'Failed to create Canvas2D object: ' +
-                        'argaument canvas is unvalid!';
-                }
-                return that;
-            },
+    Context2D.prototype._set = function (property, value) {
+        var that = this;
 
-            _set: function (property, value) {
-                var that = this;
+        if (properties[property] === BOTH) {
+            that.context[property] = value;
+        }
+    };
 
-                if (properties[property] === BOTH) {
-                    that.context[property] = value;
-                }
-            },
-
-            attr: function (property, value) {
-                var that = this;
-                if (arguments.length === 1) {
-                    // getter
-                    if (_.isString(property) &&
-                            properties[property] != null) {
-                        return that.context[property];
-                    }
-                    // setter
-                    if (_.isObject(property)) {
-                        _.each(property, function (val, name) {
-                            that._set(name, val);
-                        });
-                     }
-                } else if (arguments.length === 2) { // setter
-                    that._set(property, value);
-                }
-
-                return that;
+    Context2D.prototype.attr = function (property, value) {
+        var that = this;
+        if (arguments.length === 1) {
+            // getter
+            if (isString(property) && properties[property] != null) {
+                return that.context[property];
             }
+            // setter
+            if (isObject(property)) {
+                objEach(property, function (val, name) {
+                    that._set(name, val);
+                });
+             }
+        } else if (arguments.length === 2) { // setter
+            that._set(property, value);
+        }
 
-        };
+        return that;
+    };
 
 
-    _.each(methods, function (method) {
 
-        proto[method] = function () {
+    arrEach(methods, function (method) {
+        Context2D.prototype[method] = function () {
             var that = this,
                 context = that.context;
             context[method].apply(context, arguments);
             return that;
         };
-
     });
 
+    /**
+     * @param {HTMLCanvasElement|Context}
+     */
+    Context2D.create = function (context) {
+        var context2d;
 
-
-    Context2D = Class.extend(proto, {
-
-        /**
-         * @param {String|HTMLCanvasElement|Context}
-         */
-        create: function (canvas) {
-            var context2d;
-
-            if (_.isString(canvas)) {
-                canvas = $(canvas).get(0);
-            }
-
-            if (!canvas) {
-                return;
-            }
-
-            context2d = new Context2D(canvas);
-            return context2d;
+        if (context.getContext) {
+            context = context.getContext('2d');
+        } else if (context.canvas) {
+            context = context;
+        } else {
+            throw 'Failed to create Canvas2D object: ' +
+                'argument context is unvalid!';
         }
-    });
+
+        context2d = new Context2D(context);
+        return context2d;
+    };
 
     return Context2D;
 });
