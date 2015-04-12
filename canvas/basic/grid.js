@@ -11,23 +11,25 @@ define(function (require) {
         var xList = _.range(100, width - 1, 100),
             yList = _.range(100, height - 1, 100);
 
-        context.lineWidth = 0.1;
-        context.strokeStyle = 'red';
+        context.attr({
+            lineWidth: 0.1,
+            strokeStyle: 'red'
+        });
 
         _.each(xList, function (x) {
-            context.beginPath();
-            context.moveTo(x, 0);
-            context.lineTo(x, height);
-            context.stroke();
-            context.closePath();
+            context.beginPath().
+                moveTo(x, 0).
+                lineTo(x, height).
+                stroke().
+                closePath();
         });
 
         _.each(yList, function (y) {
-            context.beginPath();
-            context.moveTo(0, y);
-            context.lineTo(width, y);
-            context.stroke();
-            context.closePath();
+            context.beginPath().
+                moveTo(0, y).
+                lineTo(width, y).
+                stroke().
+                closePath();
         });
     };
 });

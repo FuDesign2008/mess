@@ -9,6 +9,7 @@ define(function (require) {
         $ = require('jquery'),
         _ = require('underscore'),
         Modernizr = require('Modernizr'),
+        Context2D = require('../Context2D'),
         canvas,
         context,
         width = 500,
@@ -18,7 +19,7 @@ define(function (require) {
             require('./lineCapAndJoin'),
             require('./arc'),
             require('./arcTo'),
-            require('./bezier'),
+            require('./bezier')
         ];
 
     if (!Modernizr.canvas) {
@@ -34,7 +35,7 @@ define(function (require) {
         return;
     }
 
-    context = canvas.getContext('2d');
+    context = Context2D.create(canvas);
 
     _.each(drawFunctions, function (fn) {
         context.save();

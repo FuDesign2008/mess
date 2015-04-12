@@ -32,21 +32,21 @@ define(function (require) {
                 }
             ];
 
-        context.strokeStyle = 'black';
-        context.lineWidth = 10;
+        context.attr({
+            strokeStyle: 'black',
+            lineWidth: 10
+        });
 
         _.each(configs, function (config) {
-            context.lineJoin = config.lineJoin;
-            context.lineCap = config.lineCap;
-
-            context.beginPath();
-
-            context.moveTo(config.start[0], config.start[1]);
-            context.lineTo(config.middle[0], config.middle[1]);
-            context.lineTo(config.end[0], config.end[1]);
-            context.stroke();
-
-            context.closePath();
+            context.attr({
+                lineJoin: config.lineJoin,
+                lineCap: config.lineCap
+            }).beginPath().
+                moveTo(config.start[0], config.start[1]).
+                lineTo(config.middle[0], config.middle[1]).
+                lineTo(config.end[0], config.end[1]).
+                stroke().
+                closePath();
         });
 
     };
