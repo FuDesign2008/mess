@@ -50,99 +50,78 @@
                 }
             }
         },
-        /**
-         * @param {Array}
-         *            a 数值
-         * @param {Function}
-         *            fn 回调函数
-         */
-        arrEach =  function (a, fn) {
-            if (!a.length) {
-                return;
-            }
-            var ret,
-                i,
-                l = a.length;
-
-            for (i = 0; i < l; i++) {
-                ret = fn(a[i], i);
-                if (ret === false) {
-                    return;
-                }
-            }
-        },
-        READONLY = 1,
-        BOTH = 2,
         properties = {
-            'canvas': READONLY,
-            'currentTransform': BOTH,
-            'direction': BOTH,
-            'fillStyle': BOTH,
-            'filter': BOTH,
-            'font': BOTH,
-            'globalAlpha': BOTH,
-            'globalCompositeOperation': BOTH,
-            'imageSmoothingEnabled': BOTH,
-            'lineCap': BOTH,
-            'lineDashOffset': BOTH,
-            'lineJoin': BOTH,
-            'lineWidth': BOTH,
-            'miterLimit': BOTH,
-            'shadowBlur': BOTH,
-            'shadowColor': BOTH,
-            'shadowOffsetX': BOTH,
-            'shadowOffsetY': BOTH,
-            'strokeStyle': BOTH,
-            'textAlign': BOTH,
-            'textBaseline': BOTH
+            // is readonly or not
+            'canvas': true,
+            'currentTransform': false,
+            'direction': false,
+            'fillStyle': false,
+            'filter': false,
+            'font': false,
+            'globalAlpha': false,
+            'globalCompositeOperation': false,
+            'imageSmoothingEnabled': false,
+            'lineCap': false,
+            'lineDashOffset': false,
+            'lineJoin': false,
+            'lineWidth': false,
+            'miterLimit': false,
+            'shadowBlur': false,
+            'shadowColor': false,
+            'shadowOffsetX': false,
+            'shadowOffsetY': false,
+            'strokeStyle': false,
+            'textAlign': false,
+            'textBaseline': false
         },
-        methods = [
-            'addHitRegion',
-            'arc',
-            'arcTo',
-            'asyncDrawXULElement',
-            'beginPath',
-            'bezierCurveTo',
-            'clearHitRegions',
-            'clearRect',
-            'clip',
-            'closePath',
-            'createImageData',
-            'createLinearGradient',
-            'createPattern',
-            'createRadialGradient',
-            'drawFocusIfNeeded',
-            'drawImage',
-            'drawWindow',
-            'ellipse',
-            'fill',
-            'fillRect',
-            'fillText',
-            'getImageData',
-            'getLineDash',
-            'isPointInPath',
-            'isPointInStroke',
-            'lineTo',
-            'measureText',
-            'moveTo',
-            'putImageData',
-            'quadraticCurveTo',
-            'rect',
-            'removeHitRegion',
-            'resetTransform',
-            'restore',
-            'rotate',
-            'save',
-            'scale',
-            'scrollPathIntoView',
-            'setLineDash',
-            'setTransform',
-            'stroke',
-            'strokeRect',
-            'strokeText',
-            'transform',
-            'translate'
-        ];
+        methods = {
+            // is getter or not
+            'addHitRegion': false,
+            'arc': false,
+            'arcTo': false,
+            'asyncDrawXULElement': false,
+            'beginPath': false,
+            'bezierCurveTo': false,
+            'clearHitRegions': false,
+            'clearRect': false,
+            'clip': false,
+            'closePath': false,
+            'createImageData': false,
+            'createLinearGradient': false,
+            'createPattern': false,
+            'createRadialGradient': false,
+            'drawFocusIfNeeded': false,
+            'drawImage': false,
+            'drawWindow': false,
+            'ellipse': false,
+            'fill': false,
+            'fillRect': false,
+            'fillText': false,
+            'getImageData': true,
+            'getLineDash': true,
+            'isPointInPath': false,
+            'isPointInStroke': false,
+            'lineTo': false,
+            'measureText': false,
+            'moveTo': false,
+            'putImageData': false,
+            'quadraticCurveTo': false,
+            'rect': false,
+            'removeHitRegion': false,
+            'resetTransform': false,
+            'restore': false,
+            'rotate': false,
+            'save': false,
+            'scale': false,
+            'scrollPathIntoView': false,
+            'setLineDash': false,
+            'setTransform': false,
+            'stroke': false,
+            'strokeRect': false,
+            'strokeText': false,
+            'transform': false,
+            'translate': false
+        };
 
     /**
      * @param {Context} context
@@ -156,7 +135,7 @@
     Context2D.prototype._set = function (property, value) {
         var that = this;
 
-        if (properties[property] === BOTH) {
+        if (properties[property] === false) {
             that.context[property] = value;
         }
     };
@@ -183,12 +162,12 @@
 
 
 
-    arrEach(methods, function (method) {
+    objEach(methods, function (isGetter, method) {
         Context2D.prototype[method] = function () {
             var that = this,
-                context = that.context;
-            context[method].apply(context, arguments);
-            return that;
+                context = that.context,
+                ret = context[method].apply(context, arguments);
+            return isGetter ? ret : that;
         };
     });
 

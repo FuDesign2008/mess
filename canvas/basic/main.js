@@ -10,6 +10,7 @@ define(function (require) {
         //_ = require('underscore'),
         Modernizr = require('Modernizr'),
         Context2D = require('../Context2D'),
+        Operation = require('./Operation'),
         canvas,
         context,
         width = 500,
@@ -21,20 +22,36 @@ define(function (require) {
             require('./arc'),
             require('./arcTo'),
             require('./bezier'),
-            require('./clip')
+            require('./clip'),
+            require('./globalAlpha'),
+            require('./globalCompositeOperation')
         ],
         runDrawFunctions = function () {
-            var fn = drawFunctions.shift();
+            var fn = drawFunctions.shift(),
+                fnStr,
+                operation;
 
             if (!fn) {
                 return;
             }
 
-            context.save();
-            fn(context, width, height);
-            context.restore();
+            operation = Operation.create(fn);
 
-            window.setTimeout(runDrawFunctions, timeout);
+            context.save();
+            fnStr = fn.toString();
+            if (/trigger\('finish'\)/.test(fnStr)) {
+                operation.on('finish', function () {
+                    context.restore();
+                    window.setTimeout(runDrawFunctions, timeout);
+                });
+                operation.execute(context, width, height);
+            } else {
+                operation.execute(context, width, height);
+                context.restore();
+                window.setTimeout(runDrawFunctions, timeout);
+            }
+
+
         };
 
     if (!Modernizr.canvas) {
