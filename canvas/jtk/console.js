@@ -23,6 +23,8 @@
 
 define(function () {
 
+    'use strict';
+
     var global = this,
         nativeConsole,
         noop = function () {},

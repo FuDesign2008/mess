@@ -9,6 +9,9 @@
  */
 
 (function(root, factory) {
+
+    'use strict';
+
     if (typeof exports === 'object' && typeof require === 'function') {
         /*global module*/
         module.exports = factory();
@@ -21,6 +24,10 @@
         root.Context2D = factory();
     }
 })(this, function () {
+
+    'use strict';
+
+
     var TO_STRING = Object.prototype.toString,
         isString = function (obj) {
             return obj == null ? false :
