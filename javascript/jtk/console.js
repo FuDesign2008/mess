@@ -23,7 +23,9 @@
 
 define(function () {
 
-    var global = this,
+    'use strict';
+
+    var global = window,
         nativeConsole,
         noop = function () {},
         retObj = {
