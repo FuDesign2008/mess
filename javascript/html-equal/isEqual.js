@@ -80,9 +80,15 @@ define(function (require) {
      *
      */
     return function (htmlA, htmlB) {
+
+        if (htmlA === htmlB) {
+            return true;
+        }
+
         var nodeA = PARSE_HTML(htmlA, true),
             nodeB = PARSE_HTML(htmlB, true),
             isEqual = isDomEqual(nodeA, nodeB);
+
         return isEqual;
     };
 });
