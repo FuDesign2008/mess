@@ -1,6 +1,6 @@
 /**
  *  为面向对象提供工具, 见Backbone源码
- * @author fuyg@rd.netease.com
+ * @author FuDesign2008@163.com
  * @date 2011-8-17
  * @time 上午11:16:56
  */
