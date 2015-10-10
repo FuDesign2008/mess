@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Test CSS Order</title>
+        <style>
+            #order-vl a:visited {
+                background: #CCC;
+            }
+            #order-vl a:link {
+                background: yellow;
+            }
+
+            #order-lv a:link {
+                background: yellow;
+            }
+
+            #order-lv a:visited {
+                background: #CCC;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="order-vl">
+            <p>This is a visited href <a href="http://www.youdao.com/">有道</a></p>
+            <p>This is a not visited href <a href="http://www.youdao.com/not-visited-href/">有道Not Visited</a></p>
+        </div>
+        <div id="order-lv">
+            <p>This is a visited href <a href="http://www.youdao.com/">有道</a></p>
+            <p>This is a not visited href <a href="http://www.youdao.com/not-visited-href/">有道Not Visited</a></p>
+        </div>
+    </body>
+</html>

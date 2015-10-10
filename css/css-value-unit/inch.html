@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Inch</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #inch {
+                width: 300mm;
+                height: 10px;
+                background: #666;
+            }
+            #ruler span {
+                width: 1mm;
+                height: 10px;
+                background: red;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="inch"></div>
+        <div id="ruler"></div>
+        <script>
+            var createSpan = function (index) {
+                    var span = document.createElement('span');
+                    if (index % 10 === 0) {
+                        span.style.height = '100px';
+                    } else if (index % 5 === 0) {
+                        span.style.height = '50px';
+                    }
+
+                    return span;
+                },
+                createSpans = function (count) {
+                    var docFrag = document.createDocumentFragment(),
+                        index;
+                    for (index = 1; index <= count; index++) {
+                        docFrag.appendChild(createSpan(index));
+                    }
+
+                    return docFrag;
+                };
+
+            var ruler = document.getElementById('ruler'),
+                spans = createSpans(300);
+
+            ruler.appendChild(spans);
+        </script>
+    </body>
+</html>
