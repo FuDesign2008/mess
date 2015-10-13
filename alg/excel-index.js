@@ -46,3 +46,4 @@ console.log(convertIndex(675));
 
 // ZA
 console.log(convertIndex(677));
+console.log(convertIndex(26*52));
