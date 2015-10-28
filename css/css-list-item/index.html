@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title></title>
+        <style>
+
+            .outer {
+                list-style-position: outside;
+            }
+            .inner {
+                list-style-position: inside;
+            }
+
+            ul, ol {
+                text-align: center;
+                outline: 1px solid green;
+            }
+
+            li {
+                outline: 1px dashed #F00;
+            }
+
+        </style>
+    </head>
+    <body>
+        <ul class="outer">
+            <li> A list item xxxxx</li>
+            <li> B list item</li>
+            <li> C list item yy</li>
+        </ul>
+        <ul class="outer" style="padding-left: 25px;">
+            <li> A list item xxxxx</li>
+            <li> B list item</li>
+            <li> C list item yy</li>
+        </ul>
+        <ul class="inner">
+            <li> A list item xxxxx</li>
+            <li> B list item</li>
+            <li> C list item yy</li>
+        </ul>
+
+        <ol>
+            <li class="outer"> A list item xxxxx</li>
+            <li class="inner"> B list item</li>
+            <li> C list item yy</li>
+        </ol>
+    </body>
+</html>
