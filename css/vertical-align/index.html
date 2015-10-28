@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Vertical align</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            p {
+                font-size: 14px;
+                line-height: 28px;
+                border: 1px dashed red;
+                margin: 10px;
+            }
+            .sup {
+                vertical-align: super;
+            }
+            .sub {
+                vertical-align: sub;
+            }
+
+            .bottom {
+                vertical-align: bottom;
+            }
+
+
+            span, sup, sub {
+                border: 1px dashed green;
+            }
+        </style>
+    </head>
+    <body>
+        <p>To remedy this, I’ve created the <sup>Golden</sup> Ratio <span class="sup">Typography</span> Calculator, which makes it incredibly easy to <span class="sub">determine</span> the <sub>perfect</sub> typography for <span class="bottom">any</span> situation!</p>
+        <p>To remedy this, I’ve created the <sup>Golden</sup> Ratio <span class="sup">Typography</span> Calculator, which makes it incredibly easy to <span class="sub">determine</span> the <sub>perfect</sub> typography for <span class="text-bottom">any</span> situation!</p>
+        <script>
+            var spans = document.querySelectorAll('span');
+            Array.prototype.forEach.call(
+                spans,
+                function (span) {
+                    var className = span.className;
+                    if (!className) {
+                        return;
+                    }
+                    span.setAttribute('title', className);
+                }
+            );
+        </script>
+    </body>
+</html>
