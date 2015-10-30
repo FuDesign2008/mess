@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Test for Display</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            div {
+                margin: 1em 0;
+                border: 1px solid;
+            }
+            p {border: 1px dotted;}
+            div#one p {display: block; width: 6em; text-align: center;}
+            div#two p {display: inline; width: 6em; text-align: center;}
+            div#three p {display: inline-block; width: 6em; text-align: center;}
+            div#four p {display: inline-block; text-align: center;}
+        </style>
+    </head>
+    <body>
+     <a href="http://www.example.net" style="display: block;">
+         <p style="display: inline;">this is wrong!</p>
+     </a>
+
+     <div style="width: 420px">
+        <div id="one">
+         This text is the content of a block-level level element.  Within this
+         block-level element is another block-level element.  <p>Look, it's a block-level
+         paragraph.</p>  Here's the rest of the DIV, which is still block-level.
+         </div>
+         <div id="two">
+         This text is the content of a block-level level element.  Within this
+         block-level element is an inline element.  <p>Look, it's an inline
+         paragraph.</p>  Here's the rest of the DIV, which is still block-level.
+         </div>
+         <div id="three">
+         This text is the content of a block-level level element.  Within this
+         block-level element is an inline-block element.  <p>Look, it's an inline-block
+         paragraph.</p>  Here's the rest of the DIV, which is still block-level.
+         </div>
+         <div id="four">
+         This text is the content of a block-level level element.  Within this
+         block-level element is an inline-block element.  <p>Look, it's an inline-block
+         paragraph.</p>  Here's the rest of the DIV, which is still block-level.
+         </div>
+     </div>
+
+    </body>
+</html>
