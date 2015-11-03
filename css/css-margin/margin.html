@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title></title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            p {
+                margin: 10%;
+            }
+            div {
+                border: 1px dotted;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width: 200px;">
+        <p>This paragraph is contained within a DIV that has a width of 200 pixels,
+        so its margin will be 10% of the width of the paragraph's parent (the DIV).
+        Given the declared width of 200 pixels, the margin will be 20 pixels on
+        all sides.</p>
+        </div>
+        <div style="width: 100px;">
+        <p>This paragraph is contained within a DIV with a width of 100 pixels,
+        so its margin will still be 10% of the width of the paragraph's parent.
+        There will, therefore, be half as much margin on this paragraph as that
+        on the first paragraph.</p>
+        </div>
+
+        <div style="width: 500px;">
+         <p>This is a paragraph, and its top margin is 10% the width of its parent element.</p>
+         </div>
+    </body>
+</html>

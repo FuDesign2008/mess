@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>innerText vs textContent</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div>
+            <!-- This is comment -->
+            <p>This is p, include comment.</p>
+            <style>
+                p {
+                    border: 1px solid red;
+                }
+            </style>
+            <script>
+                console.log('Hello');
+            </script>
+        </div>
+        <script>
+            var div = document.querySelector('div');
+            console.log('innerText: ' +  div.innerText);
+            console.log('textContent: ' + div.textContent);
+        </script>
+    </body>
+</html>
