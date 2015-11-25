@@ -3,11 +3,19 @@
 $connect = mysql_connect('localhost', 'sqltest', 'sql_TEST_123');
 
 if (!$connect) {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect to mysql: ' . mysql_error());
 }
 
 mysql_select_db('phptest', $connect);
 
+$sqlCmd = 'UPDATE Persons SET age="46" WHERE firstName="Perter"';
+mysql_query($sqlCmd, $connect);
+
+$affectedRows = mysql_affected_rows($connect);
+echo '<p>affected rows: ' . $affectedRows . '</p>';
+
+$sqlCmd = 'SELECT * FROM Persons ORDER BY age';
+$result = mysql_query($sqlCmd, $connect);
 
 function printQueryResult($queryResult) {
     echo "<style>";
@@ -28,11 +36,6 @@ function printQueryResult($queryResult) {
     echo "</table>";
 }
 
-
-$result = mysql_query("SELECT * FROM Persons", $connect);
-printQueryResult($result);
-
-$result = mysql_query("SELECT * FROM Persons WHERE firstName='Perter'");
 printQueryResult($result);
 
 

@@ -3,7 +3,7 @@
 $connect = mysql_connect('localhost', 'sqltest', 'sql_TEST_123');
 
 if (!$connect) {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect to msyql: ' . mysql_error());
 }
 
 mysql_select_db('phptest', $connect);
@@ -28,14 +28,14 @@ function printQueryResult($queryResult) {
     echo "</table>";
 }
 
-
-$result = mysql_query("SELECT * FROM Persons", $connect);
+$result = mysql_query("SELECT * FROM Persons ORDER BY age", $connect);
 printQueryResult($result);
 
-$result = mysql_query("SELECT * FROM Persons WHERE firstName='Perter'");
+$result = mysql_query('SELECT * FROM Persons ORDER BY age DESC', $connect);
 printQueryResult($result);
-
 
 mysql_close($connect);
+
+
 
 ?>

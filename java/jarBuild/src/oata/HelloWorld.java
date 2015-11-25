@@ -11,6 +11,6 @@ public class HelloWorld {
     public static void main(String[] args) {
         BasicConfigurator.configure();
 
-        logger.info("HelloWorld");
+        logger.info("Hello, World");
     }
 }

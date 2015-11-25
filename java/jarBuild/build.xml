@@ -1,13 +1,6 @@
 <project name="HelloWorld" basedir="." default="main">
 
-    <property name="src.dir" value="src" />
-
-    <property name="build.dir" value="build" />
-    <property name="classes.dir" value="${build.dir}/classes" />
-    <property name="jar.dir" value="${build.dir}/jar"/>
-    <property name="main-class" value="oata.HelloWorld"/>
-
-    <property name="lib.dir" value="lib" />
+    <property file="./build.properties" />
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar" />
