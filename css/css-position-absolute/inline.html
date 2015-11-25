@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>absolute position of inline elements</title>
+        <style>
+            div {
+                width: 500px;
+            }
+            p {
+                margin: 50px 50px;
+                border: 1px dashed black;
+            }
+            span {
+                border: 1px dashed;
+                position: absolute;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <p style="background-color: #FCC;">
+                When we consider the effect of positioning, it quickly becomes clear that authors
+             can do a great deal of damage to layout, just as they can do very interesting
+             things.<span style="top: 0; left: 0;background-color:#F66;">[4]</span>
+             This is usually the case with useful technologies: the sword always has
+             at least two edges, both of them sharp.
+            </p>
+            <p style="background-color:#CCF;">
+                When we consider the effect of positioning, it quickly becomes clear that authors
+             can do a great deal of damage to layout, just as they can do very interesting
+             things.<span style="top: auto; left: 0; background-color:#66F;">[4]</span>
+             This is usually the case with useful technologies: the sword always has
+             at least two edges, both of them sharp.
+            </p>
+            <p style="background-color:#CFC;">
+                When we consider the effect of positioning, it quickly becomes clear that authors
+             can do a great deal of damage to layout, just as they can do very interesting
+             things.<span style="top: auto; left: auto; background-color:#6F6;">[4]</span>
+             This is usually the case with useful technologies: the sword always has
+             at least two edges, both of them sharp.
+            </p>
+            <p style="background-color:#CFC;">
+                When we consider the effect of positioning, it quickly becomes clear that authors
+             can do a great deal of damage to layout, just as they can do very interesting
+             things.<span style="background-color:#6F6;">[4]</span>
+             This is usually the case with useful technologies: the sword always has
+             at least two edges, both of them sharp.
+            </p>
+        </div>
+    </body>
+</html>

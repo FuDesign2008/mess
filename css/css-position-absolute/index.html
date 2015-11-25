@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>css position absolute</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .ad {
+                width: 100px;
+                height: 100px;
+                background-color: yellow;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+            .fixed {
+                position: fixed;
+                right: 200px;
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="height: 5000px; background-color: #CCC;">
+            height is 5000px
+        </div>
+        <div class='ad'>absolute</div>
+        <div class='ad fixed'>fixed</div>
+    </body>
+</html>
