@@ -1,0 +1,2 @@
+Hello, 这是中文
+This is a plain text;
