@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>iframe message</title>
+    </head>
+    <body>
+        <h1>iframe message test</h1>
+        <iframe src="./test.html"></iframe>
+        <script>
+            var hello = {
+                he: 'hello',
+                arr: ['a', 'b', 'c', 'd']
+            };
+            var iframe = document.querySelector('iframe');
+            var iframeWin = iframe.contentWindow;
+
+            window.setTimeout(function () {
+                iframeWin.postMessage({
+                    hello: hello,
+                    good: 'fine'
+                }, 'http://fuyg.youdao.com');
+            }, 1000);
+        </script>
+    </body>
+</html>
