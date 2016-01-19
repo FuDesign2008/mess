@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>no comment</comment>
+<entry key="Missouri">Jefferson City</entry>
+<entry key="Illinois">Springfield</entry>
+<entry key="Indiana">Indianapolis</entry>
+<entry key="California">Sacramento</entry>
+<entry key="Washington">Olympia</entry>
+</properties>
