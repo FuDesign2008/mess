@@ -22,6 +22,10 @@
 
                 window.console.log(event.data);
             });
+
+            parentWin.postMessage({
+                content: 'this content from inner window to outer window'
+            }, 'http://fuyg.youdao.com');
         </script>
     </body>
 </html>

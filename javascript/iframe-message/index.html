@@ -22,6 +22,14 @@
                     good: 'fine'
                 }, 'http://fuyg.youdao.com');
             }, 1000);
+
+
+            window.addEventListener('message', function (event) {
+                if (event.origin !== 'http://fuyg.youdao.com') return;
+
+                console.log('data from inner window: ', event.data);
+            });
+
         </script>
     </body>
 </html>
