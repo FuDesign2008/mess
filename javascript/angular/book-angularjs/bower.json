@@ -1,0 +1,21 @@
+{
+  "name": "book-angularjs",
+  "homepage": "https://github.com/FuDesign2008/mess",
+  "authors": [
+    "fudesign2008 <fudesign2008@163.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.0.8"
+  }
+}
