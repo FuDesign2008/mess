@@ -1,0 +1,21 @@
+{
+  "name": "www.hello.com",
+  "homepage": "https://github.com/FuDesign2008/mess",
+  "authors": [
+    "fudesign2008 <fudesign2008@163.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0"
+  }
+}
