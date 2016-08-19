@@ -1,0 +1,23 @@
+{
+    "libs": [
+        "browser",
+        "jquery",
+        "underscore",
+        "backbone"
+    ],
+    "plugins": {
+        "requirejs": {
+            "baseUrl": "./",
+            "paths": {
+                "jquery": "./bower_components/jquery/dist/jquery",
+                "underscore": "./bower_components/underscore/underscore",
+                "underscore.string": "./bower_components/underscore.string/dist/underscore.string",
+                "backbone": "./bower_components/backbone/backbone",
+                "jtk": "./libs/jtk",
+                "tinycolor": "./bower_components/tinycolor/dist/tinycolor-min"
+
+            }
+        },
+        "node": {}
+    }
+}
