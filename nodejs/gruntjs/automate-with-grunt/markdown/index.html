@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Markdown Editor</title>
+        <link rel="stylesheet" href="assets/app.css">
+    </head>
+    <body ng-app="markdownEditor">
+        <header class="masthead">
+            <h1>MarkdownMark Editor</h1>
+        </header>
+        <div class="content" ng-controller="MainCtrl">
+            <section class="editor">
+                <textarea class="input" ng-model="input" ng-change="updatePreview()">
+                </textarea>
+            </section>
+            <section id="output" class="preview" ng-bind-html="output"></section>
+        </div>
+        <footer>
+            <small> Copyright @copyt; 2016 </small>
+        </footer>
+        <script src="assets/app.js"></script>
+    </body>
+</html>
