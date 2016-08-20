@@ -27,24 +27,18 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask('build', 'Concatenate files', function () {
     this.files.forEach(function (filegroup) {
-      var output = '',
-          count = 0,
-          src = filegroup.orig.src.filter(function (file) {
-            if (grunt.file.exists(file)) {
-              return true;
-            } else {
-              grunt.log.warn('Source file "' + file + '" not found');
-              return false;
-            }
-          }),
-          sources = src.map(function (file) {
-            count++;
-            return grunt.file.read(file);
-          });
+      var sources = [];
 
-      output = sources.join(';');
-      grunt.file.write(filegroup.dest, output);
-      grunt.log.ok('build ' + count + ' files');
+      filegroup.orig.src.forEach(function (file) {
+        if (grunt.file.exists(file)) {
+          sources.push(grunt.file.read(file));
+        } else {
+          grunt.log.warn('File "' + file + '" not found!');
+        }
+      });
+
+      grunt.file.write(filegroup.dest, sources.join(';'));
+      grunt.log.ok('build ' + sources.length + ' files');
     });
 
   });
