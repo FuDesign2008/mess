@@ -1,6 +1,7 @@
 /**
  * @prettier
  */
+const console = window.console
 if ('EventSource' in window) {
   const url = '/api/events'
   const source = new EventSource(url)
