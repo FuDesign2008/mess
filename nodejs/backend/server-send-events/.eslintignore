@@ -1,0 +1,4 @@
+.eslintrc.js
+src/client/pages/admin/**/*.vue
+src/test
+node_modules
