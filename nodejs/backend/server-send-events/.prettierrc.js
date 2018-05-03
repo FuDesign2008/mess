@@ -14,8 +14,8 @@ module.exports = {
     {
       files: ['*.js', '.*.js', '*.ts'],
       options: {
-        requirePragma: true,
-        insertPragma: true,
+        requirePragma: false,
+        insertPragma: false,
       },
     },
   ],

@@ -6,6 +6,8 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/events', (req, res) => {
+  console.log(req.cookies, req.signedCookies)
+
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
